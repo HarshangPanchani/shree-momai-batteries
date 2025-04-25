@@ -1,0 +1,616 @@
+/* Global styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #121212;
+    background-image: 
+        radial-gradient(circle at 70% 60%, rgba(10, 142, 56, 0.1) 0%, transparent 70%),
+        radial-gradient(circle at 20% 30%, rgba(226, 27, 35, 0.15) 0%, transparent 60%),
+        linear-gradient(to right, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.9));
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide regular scrollbar */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Battery scrollbar container */
+.battery-scrollbar-container {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+    width: 25px;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+/* Battery scrollbar track */
+.battery-scrollbar-track {
+    position: relative;
+    width: 20px;
+    height: 100%;
+    background-color: rgba(20, 20, 20, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
+    border: 2px solid rgba(50, 50, 50, 0.7);
+    overflow: hidden;
+}
+
+/* Battery terminal at top */
+.battery-scrollbar-track::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 6px;
+    background-color: #444;
+    border-radius: 3px 3px 0 0;
+    z-index: 1;
+}
+
+/* Battery indicator levels */
+.battery-indicator-levels {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10% 0;
+    z-index: 1;
+}
+
+/* Battery level lines */
+.battery-level {
+    width: 60%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-left: 20%;
+}
+
+/* Battery scrollbar thumb */
+.battery-scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(226, 27, 35, 0.8), rgba(10, 142, 56, 0.8));
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(226, 27, 35, 0.7);
+    transition: transform 0.2s ease, background 0.5s ease, box-shadow 0.3s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Animated battery glow effect */
+@keyframes batteryPulse {
+    0% {
+        box-shadow: 0 0 8px rgba(226, 27, 35, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(10, 142, 56, 0.9);
+    }
+    100% {
+        box-shadow: 0 0 8px rgba(226, 27, 35, 0.7);
+    }
+}
+
+/* Apply animation to scrollbar thumb */
+.battery-scrollbar-thumb {
+    animation: batteryPulse 3s infinite;
+}
+
+/* Battery background elements */
+.battery-element {
+    position: fixed;
+    background: linear-gradient(135deg, rgba(226, 27, 35, 0.1), rgba(10, 142, 56, 0.1));
+    border-radius: 10px;
+    z-index: -1;
+    opacity: 0.3;
+    box-shadow: 0 0 20px rgba(10, 142, 56, 0.2);
+    filter: blur(5px);
+}
+
+/* Hero section enhancement */
+.hero-section h1, 
+.hero-section p,
+.section-title,
+.about-content h3,
+.brand-card h4,
+.service-card h4 {
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 5;
+}
+
+/* Text readability improvements */
+.service-card p,
+.brand-card p,
+.about-content p,
+.feature-item span,
+.hero-section .lead {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    color: #f0f0f0;
+    font-weight: 400;
+}
+
+/* Card backgrounds */
+.service-card,
+.brand-card {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+/* Service icon improvements */
+.service-icon i {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+}
+
+.service-red .service-icon i {
+    color: rgba(226, 27, 35, 0.9);
+}
+
+.service-green .service-icon i {
+    color: rgba(10, 142, 56, 0.9);
+}
+
+/* Improved section overlays */
+.section-overlay {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)) !important;
+}
+
+/* Hero section battery animations */
+.hero-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    min-height: 450px;
+}
+
+.battery-3d {
+    position: absolute;
+    width: 280px;
+    height: 140px;
+    top: 10%;
+    right: 5%;
+    transform-style: preserve-3d;
+    transform: rotateX(15deg) rotateY(15deg);
+    z-index: 2;
+}
+
+.battery-icon {
+    position: absolute;
+    width: 180px; 
+    height: 90px;
+    bottom: 20%;
+    left: 15%;
+    z-index: 3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .hero-animation {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    
+    .battery-3d {
+        top: 5%;
+        right: 50%;
+        transform: translateX(50%) rotateX(15deg) rotateY(15deg);
+    }
+    
+    .battery-icon {
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .battery-3d {
+        width: 220px;
+        height: 110px;
+    }
+    
+    .battery-icon {
+        width: 140px;
+        height: 70px;
+    }
+}
+
+/* Section backgrounds */
+.section-background {
+    position: relative;
+    overflow: hidden;
+    background-image: 
+        radial-gradient(circle at 70% 60%, rgba(10, 142, 56, 0.1) 0%, transparent 70%),
+        radial-gradient(circle at 20% 30%, rgba(226, 27, 35, 0.15) 0%, transparent 60%),
+        linear-gradient(to right, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.9));
+}
+
+/* Add subtle glow to elements */
+.glow-effect {
+    box-shadow: 0 0 15px rgba(226, 27, 35, 0.3), 0 0 30px rgba(10, 142, 56, 0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+.glow-effect:hover {
+    box-shadow: 0 0 20px rgba(226, 27, 35, 0.5), 0 0 40px rgba(10, 142, 56, 0.3);
+}
+
+/* Enhanced contact items for the dark background */
+.contact-item {
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    border-left: 4px solid var(--primary-color);
+    border-right: 1px solid rgba(10, 142, 56, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(0, 0, 0, 0.6);
+    border-left: 4px solid rgba(226, 27, 35, 0.9);
+}
+
+.contact-item:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, rgba(10, 142, 56, 0.7));
+}
+
+.contact-item .icon {
+    background: linear-gradient(135deg, rgba(226, 27, 35, 0.8), rgba(10, 142, 56, 0.8));
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 15px;
+    box-shadow: 0 0 15px rgba(226, 27, 35, 0.4);
+}
+
+.contact-item .icon i {
+    color: white;
+    font-size: 20px;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+}
+
+.contact-item .content h4,
+.contact-item .content h5 {
+    color: white !important;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.7);
+    letter-spacing: 0.5px;
+}
+
+.contact-item .content p, 
+.contact-item .content a.text-dark,
+.contact-item .content a {
+    color: white !important;
+    font-weight: 500;
+    font-size: 16px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.7);
+    letter-spacing: 0.3px;
+}
+
+.contact-info {
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 15px;
+    background-color: transparent;
+}
+
+/* WhatsApp link in contact section */
+.whatsapp-link {
+    background-color: #25d366;
+    color: white !important;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-shadow: none !important;
+}
+
+.map-link {
+    background-color: #e74c3c;
+    color: white !important;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-shadow: none !important;
+}
+
+/* About section text enhancement */
+.about-content p {
+    color: #fff !important;
+    font-weight: 400;
+    line-height: 1.7;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.about-content {
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.about-content h3 {
+    color: #fff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Feature items in about section */
+.feature-item {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.feature-item i {
+    color: rgb(6, 255, 6);
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.feature-item span {
+    color: #fff !important;
+    font-weight: 500;
+    font-size: 15px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+/* Improved section titles for dark backgrounds */
+.section-title {
+    color: #fff !important;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border-left: 3px solid var(--primary-color);
+    border-right: 3px solid var(--secondary-color);
+}
+
+.about-section .section-title,
+.contact-section .section-title {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/* Background adjustments */
+.contact-section, 
+.about-section {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.05);
+}
+
+/* Text shadow for all text elements */
+.text-shadow-dark {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+    color: white !important;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* Contact section text enhancement */
+.contact-section .text-shadow-dark {
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 1), 0 0 15px rgba(0, 0, 0, 0.8);
+    color: white !important;
+    font-weight: 600;
+}
+
+/* Your Trusted Battery Partner section */
+.about-content .trusted-heading {
+    color: #fff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Footer Enhancement */
+.footer-section {
+    background-color: rgba(0, 0, 0, 0.95);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 70% 60%, rgba(10, 142, 56, 0.1) 0%, transparent 70%),
+        radial-gradient(circle at 20% 30%, rgba(226, 27, 35, 0.15) 0%, transparent 60%);
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.footer-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.footer-section h3,
+.footer-section h4,
+.footer-section p,
+.footer-section a,
+.footer-section li,
+.footer-section .copyright p {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.footer-info h3 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.footer-links h4 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.footer-newsletter h4 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.footer-links ul li a {
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.footer-links ul li a:hover {
+    color: var(--primary-color) !important;
+    transform: translateX(5px);
+    text-shadow: 0 0 8px rgba(226, 27, 35, 0.5);
+}
+
+.social-icon {
+    background: linear-gradient(135deg, rgba(226, 27, 35, 0.8), rgba(10, 142, 56, 0.8));
+    color: white !important;
+    text-shadow: none;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(226, 27, 35, 0.5);
+}
+
+.copyright {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.copyright p {
+    font-size: 14px;
+    color: white !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Enhanced quick links in footer */
+.footer-links ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.footer-links ul li {
+    position: relative;
+    padding-left: 15px;
+}
+
+.footer-links ul li:before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary-color);
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+/* Newsletter form enhancement */
+.footer-newsletter input {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 10px 15px;
+}
+
+.footer-newsletter input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-newsletter button {
+    background: linear-gradient(135deg, rgba(226, 27, 35, 0.9), rgba(10, 142, 56, 0.9));
+    border: none;
+    color: white;
+}
+
+/* Global text enhancement class */
+.text-white-enhanced {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+}
+
+/* Quick Links text style */
+.quick-links-section h3,
+.quick-links-section a,
+.quick-links-section p {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+.quick-links-section a:hover {
+    color: var(--primary-color) !important;
+} 
